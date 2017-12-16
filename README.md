@@ -1,5 +1,18 @@
 # Node course (code examples)
 
-### Templates
-- [base example](https://)
-- [with express](https://)
+### Templates (Base example)
+
+#### Ejs
+```
+npm run ejs
+```
+
+#### Handlebars
+```
+npm run hbs
+```
+
+#### Pug
+```
+npm run pug
+```
