@@ -20,43 +20,19 @@
     {{#bold f.story}}
         <div>{{intro}}</div>
     {{/bold}}
-     
+
     <div id="particles">
         {{{link 'Vegetables' href='/veggies' }}}
     </div>
-    <button id="btn">Send</button>
-    
+
     {{#each f.people}}
         {{> user this}}
-    {{/each}}   
+    {{/each}}
     <hr>
 
     {{> (whichPartial class="block") }}
-   
+
     <hr>
 
-    <script>
-        
-        const btn = document.querySelector('#btn');
-        btn.addEventListener('click', () => {
-            fetch('http://localhost:3000?x=2&y=3')
-            /* -- fetch('http://localhost:3000', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(function(response) {
-                if(response.ok) {
-                    return response.json();
-                }
-                throw new Error('Network response was not ok.');
-            }).then(function(data) {
-                console.log(data)
-                
-            }).catch(function(error) {
-                console.log('There has been a problem with request: ' + error.message);
-            }); */
-        })
-    </script>
 </body>
 </html>
