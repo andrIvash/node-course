@@ -23,7 +23,7 @@
   "dependencies": {
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "handlebars": "^4.0.11",
+    "hbs": "^4.0.1",
     "lru-cache": "^4.1.1",
     "pug": "^2.0.0-rc.4"
   }
