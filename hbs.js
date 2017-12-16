@@ -1,14 +1,15 @@
 // handlebars template example
 
+const express = require('express');
+const app = express();
 const hbs = require('hbs');
-const fs = require('fs');
 const path = require('path');
-const http = require('http');
 
 const fixtures = require('./fixtures');
 
-const index = path.join(__dirname, '/views/hbs/index.hbs');
-hbs.registerPartials(path.join(__dirname, '/views/hbs/partials/'));
+hbs.registerPartials(path.join(__dirname, '/views/hbs/partials'));
+app.set('views', './views/hbs');
+app.set('view engine', 'hbs');
 
 hbs.registerHelper('bold', (context, options) => {
   // console.log('context', context);
@@ -21,8 +22,8 @@ hbs.registerHelper('bold', (context, options) => {
 hbs.registerHelper('whichPartial', (options) => {
   // console.log(options.hash.class);
   return options.hash.class === 'block' ? 'block' : 'user';
-});
-
+})
+;
 hbs.registerHelper('link', (context, options) => {
   const attrs = [];
   for (let prop in options.hash) {
@@ -33,13 +34,17 @@ hbs.registerHelper('link', (context, options) => {
   );
 });
 
-http.createServer((request, response) => {
-  response.writeHead(200, {'Content-Type': 'text/html'});
+app.use((req, res, next) => {
+  res.locals.f = fixtures;
+  next();
+});
 
-  const file = fs.readFileSync(index, 'utf8');
-  const compiledFunction = hbs.compile(file);
+app.set('views', './views/hbs');
+app.set('view engine', 'hbs');
 
-  response.write(compiledFunction({f: fixtures}));
+app.get('*', (req, res) => {
+  console.log('--- ', req.url);
+  res.render('index');
+});
 
-  response.end();
-}).listen(3000);
+app.listen(3000, () => console.log('Example app listening on port 3000!'));

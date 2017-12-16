@@ -1,23 +1,21 @@
 // ejs template example
 
-const ejs = require('ejs');
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
+const express = require('express');
+const app = express();
 
 const fixtures = require('./fixtures');
 
-const index = path.join(__dirname, '/views/ejs/index.ejs');
+app.use((req, res, next) => {
+  res.locals.f = fixtures;
+  next();
+});
 
-http.createServer((request, response) => {
-  response.writeHead(200, {'Content-Type': 'text/html'});
+app.set('views', './views/ejs');
+app.set('view engine', 'ejs');
 
-  const file = fs.readFileSync(index, 'utf8');
-  const compiledFunction = ejs.compile(file, {
-    filename: path.join(__dirname, '/views/ejs/included.ejs')
-  });
+app.get('*', (req, res) => {
+  console.log('--- ', req.url);
+  res.render('index');
+});
 
-  response.write(compiledFunction({f: fixtures}));
-
-  response.end();
-}).listen(3000);
+app.listen(3000, () => console.log('Example app listening on port 3000!'));

@@ -1,18 +1,21 @@
 // pug template example
 
-const pug = require('pug');
-const path = require('path');
-const http = require('http');
+const express = require('express');
+const app = express();
 
 const fixtures = require('./fixtures');
 
-const index = path.join(__dirname, '/views/pug/index.pug');
+app.use((req, res, next) => {
+  res.locals.f = fixtures;
+  next();
+});
 
-http.createServer((request, response) => {
-  response.writeHead(200, {'Content-Type': 'text/html'});
+app.set('views', './views/pug');
+app.set('view engine', 'pug');
 
-  const compiledFunction = pug.compileFile(index);
-  response.write(compiledFunction({f: fixtures}));
+app.get('*', (req, res) => {
+  console.log('--- ', req.url);
+  res.render('index');
+});
 
-  response.end();
-}).listen(3000);
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
