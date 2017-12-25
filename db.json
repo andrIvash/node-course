@@ -34,6 +34,12 @@
       "phone": "8263729224",
       "email": "ryan@test.com",
       "memberSince": "Nov 1, 2008"
+    },
+    {
+      "firstName": "Todd",
+      "lastName": null,
+      "phone": null,
+      "email": null
     }
   ]
 }

@@ -22,15 +22,12 @@ router.get('/', (req, res) => {
   res.json({ message: 'hooray! welcome to our api!' });
 });
 
-router.get('/', (req, res) => {
-  res.json({ message: 'hooray! welcome to our api!' });
-});
-
 // get list of resourse and add single user
 router.route('/users')
   .get((req, res) => {
     const users = db.get('users').value();
     const usersLength = users.length;
+
     // pagination
     if (req.query.offset) {
       const pageNum = parseInt(req.query.offset || 0, 10);
@@ -64,7 +61,7 @@ router.route('/users')
       .push({firstName, lastName, phone, email, memberSince})
       .write();
     const peopleLength = db.get('users').value().length;
-    res.header('Location', `http://localhost:3000/api/v1.0/users/${peopleLength}`);
+    res.header('Location', `http://localhost:3000/api/v1.0/users/${peopleLength-1}`);
     res.status(201).send('User added');
   });
 
@@ -85,7 +82,6 @@ router.route('/users/:user_id')
       .write();
     res.send(singleUser);
   });
-
 // add base route
 app.use('/api/v1.0', router);
 
