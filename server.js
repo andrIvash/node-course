@@ -94,7 +94,7 @@ app.use('*', (req, res) => {
   throw new HttpError('Not found. API is on http://localhost:3000/api/v1.0', 404);
 });
 
-// server start
+// error handler
 app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({status: err.status, message: err.message});
 });
