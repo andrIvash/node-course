@@ -4,9 +4,7 @@
   "description": "using templates",
   "main": "index.js",
   "scripts": {
-    "ejs": "nodemon ./ejs.js ",
-    "hbs": "nodemon ./hbs.js ",
-    "pug": "nodemon ./pug.js ",
+    "start": "nodemon ./server.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ivashchenko a.",
@@ -24,6 +22,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "hbs": "^4.0.1",
+    "lowdb": "^1.0.0",
     "lru-cache": "^4.1.1",
     "pug": "^2.0.0-rc.4"
   }
