@@ -41,14 +41,15 @@ app.post('/', (req, res) => {
     lastName = null,
     phone = null,
     email = null,
-    memberSince} = req.body;
+    memberSince = Date.now()
+  } = req.body;
   if (!firstName) throw new HttpError('Missing required parameter - firstName', 400);
   db.get('users')
     .push({firstName, lastName, phone, email, memberSince})
     .write();
   const peopleLength = db.get('users').value().length;
   res.header('Location', `http://localhost:3000/api/v1.0/users/${peopleLength}`);
-  res.status(201).send('User added');
+  res.status(201).send({message: 'User added'});
 });
 
 // work with the single user
