@@ -2,18 +2,18 @@
   // const expect = chai.expect;
   // const chaiHttp = require('chai-http');
   // const server = require('../server');
-  //
+  
   // chai.use(chaiHttp);
 
 
-  // describe('initial test', function () {
-  //   it('should true to be true', function () {
-  //     expect(true).to.be.true;
-  //   });
-  //   it.skip('postpone your assertion', () => {
-  //   });
-  //   it.skip('postpone your assertion')
-  // });
+  describe('initial test', function () {
+    it('should true to be true', function () {
+      expect(true).to.be.true;
+    });
+    it.skip('postpone your assertion', () => {
+    });
+    it.skip('postpone your assertion')
+  });
 
 // Test the /GET route
 
