@@ -1,3 +1,5 @@
+
+
   // const chai = require('chai');
   // const expect = chai.expect;
   // const chaiHttp = require('chai-http');
@@ -14,9 +16,27 @@
   //   });
   //   it.skip('postpone your assertion')
   // });
+const sinon = require('sinon');
+//const stub = sinon.stub(request, 'get');
+//stub.resolves({status: 200, body: [1, 2]});
+
+// bc.getAll.then(function(data){
+//     expect(data.response).to.equal("ok");
+//     done();
+// },function(err){
+//     done("should NEVER get here");
+// });
+
 
 // Test the /GET route
+beforeEach(() => {
+  this.get = sinon.stub(request, 'get');
+  this.get.resolves({status: 200, body: [1, 2]});
+});
 
+afterEach(() => {
+  request.get.restore();
+});
 describe('/GET users', () => {
   // it('it should GET all the users', (done) => {
   //   chai.request(server)
@@ -28,14 +48,14 @@ describe('/GET users', () => {
   //       done();
   //     });
   // });
-  it('it should GET all the users', (done) => {
+  it('it should GET all the users', () => {
     request
       .get('/api/v1.0/users')
-      .end((err, res) => {
+      .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.be.a('array');
         expect(res.body.length).to.not.be.equal(0);
-        done();
+        //done();
       });
   });
   it('it should return a right error for the wrong GET request', (done) => {
