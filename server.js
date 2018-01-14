@@ -13,6 +13,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({status: err.status, message: err.message});
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(3000, function () { console.log('Example app listening on port 3000!'); });
 
 module.exports = app;
