@@ -10,3 +10,7 @@
 ### REST API
 - [simple template](https://github.com/andrIvash/node-course/tree/base-api)
 - [distributed template](https://github.com/andrIvash/node-course/tree/adv-api)
+
+### Testing
+- [api](https://github.com/andrIvash/node-course/tree/testing)
+- [mock](https://github.com/andrIvash/node-course/tree/mock)
